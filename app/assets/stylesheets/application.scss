@@ -1,0 +1,37 @@
+@import "bootstrap";
+.jumbotron
+{
+    padding-top: 0px;
+    padding-bottom:0px;
+    background-size: cover;
+    background: contain;
+    width: 100%; /* make sure to define width to fill container */
+    height: 100px; /* define the height in pixels or make sure   */
+                   /* you have something in your div with height */
+                   /* so you can see your image */
+    max-width:1400px;
+    font-size: 14;/* define the max width */
+ }
+
+
+ .footer {
+   flex: 0 0 50px;
+   margin-top: auto;
+   text-align: center;
+   color:black;
+   border-top:2px;
+   background-color: #00cccc;
+   width: 100%;
+   position: fixed;
+ }
+
+
+  .header {
+    background-color: #00cccc;
+    flex: 0 0 50px;
+    margin-top: auto;
+    text-align: center;
+    color:white;
+    border-top:2px;
+    height:auto;
+  }
