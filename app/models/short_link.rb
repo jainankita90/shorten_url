@@ -8,6 +8,7 @@ class ShortLink < ApplicationRecord
 
   def generate_short_url
     self.slug = id.to_s(36)
+    self.expire_date = Date.today + 30.days
     self.save
   end
 

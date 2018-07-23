@@ -28,3 +28,4 @@ services:
       DB_NAME: shorten_url
       DB_PASSWORD: password
       DB_HOST: db
+      HOST_URL: 'http://localhost:5001/'

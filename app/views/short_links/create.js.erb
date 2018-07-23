@@ -1,1 +1,1 @@
-$('#result').html('<p class="short_url">Your Link <%= @short_link.main_url%>: <%= link_to "http\:\/\/localhost:5001/short_links/fetch/#{@short_link.slug}", controller:'short_links', action:'fetch', slug:@short_link.slug %></p>')
+$('#result').html('<p class="short_url">Your Link <%= @short_link.main_url%>: <%= link_to "#{ENV['HOST_URL']}/short_links/fetch/#{@short_link.slug}", controller:'short_links', action:'fetch', slug:@short_link.slug %></p>')

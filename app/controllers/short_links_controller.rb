@@ -4,7 +4,7 @@ class ShortLinksController < ApplicationController
 
 
   def index
-    @short_links = ShortLink.all.limit(100)
+    @short_links = ShortLink.all.order("hit_count desc").limit(100)
     @short_link = ShortLink.new
   end
 
@@ -12,15 +12,16 @@ class ShortLinksController < ApplicationController
     slug = params[:id]
     @short_link = ShortLink.find_by_slug(slug)
     @short_link.hit_count+=1
+    @short_link.expire_date = Date.today + 30.days
     @short_link.save
-    redirect_to "/short_links/"+@short_link.main_url
+    redirect_to '/short_links/'+@short_link.main_url
     return
   end
 
   def fetch
     slug = params[:slug]
     @short_link = ShortLink.find_by_slug(slug)
-    @short_link.hit_count+=1
+    @short_link.hit_count += 1
     @short_link.save
     redirect_to @short_link.main_url
     return
@@ -38,6 +39,8 @@ class ShortLinksController < ApplicationController
       @short_link = short_link
     else
       @short_link = short_link.find_existing
+      @short_link.expire_date = Date.today + 30.days
+      @short_link.save
     end
     respond_with @short_link
   end
