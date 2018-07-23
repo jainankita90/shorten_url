@@ -1,1 +1,1 @@
-$('#result').append('<p class="short_url">Your Shortened Link: <%= link_to @short_link.main_url, @short_link.main_url, target: "_blank" %></p>')
+$('#result').append('<p class="short_url">Your Link <%= @short_link.main_url %>: <%= link_to root_path+@short_link.slug, root_path+@short_link.slug, target: "_blank" %></p>')

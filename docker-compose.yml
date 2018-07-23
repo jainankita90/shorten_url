@@ -17,6 +17,8 @@ services:
       - ".:/shorten_url"
     ports:
       - "5001:3000"
+    stdin_open: true
+    tty: true
     depends_on:
       - db
     links:

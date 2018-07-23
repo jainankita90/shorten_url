@@ -67,3 +67,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'jquery-validation-rails'
+gem 'responders'
