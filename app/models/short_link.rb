@@ -16,6 +16,7 @@ class ShortLink < ApplicationRecord
   end
 
   def find_existing
+    self.sanitize
     ShortLink.find_by(sanitize_url: self.sanitize_url)
   end
 

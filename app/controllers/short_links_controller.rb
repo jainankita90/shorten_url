@@ -1,7 +1,6 @@
 class ShortLinksController < ApplicationController
   before_action :set_short_link, only: [ :update]
   respond_to :html,:json,:js
-  after_action :increse_hit_count, :fetch
 
 
   def index
@@ -9,13 +8,21 @@ class ShortLinksController < ApplicationController
     @short_link = ShortLink.new
   end
 
+  def show
+    slug = params[:id]
+    @short_link = ShortLink.find_by_slug(slug)
+    @short_link.hit_count+=1
+    @short_link.save
+    redirect_to "/short_links/"+@short_link.main_url
+    return
+  end
+
   def fetch
     slug = params[:slug]
     @short_link = ShortLink.find_by_slug(slug)
-    if @short_link.present?
-      path = @short_link.main_url
-    end
-    redirect_to path
+    @short_link.hit_count+=1
+    @short_link.save
+    redirect_to @short_link.main_url
     return
   end
 
@@ -25,13 +32,14 @@ class ShortLinksController < ApplicationController
 
 
   def create
-    @short_link = ShortLink.new(short_link_params)
-    if @short_link.new_url?
-      @short_link.save
+    short_link = ShortLink.new(short_link_params)
+    if short_link.new_url?
+      short_link.save
+      @short_link = short_link
     else
-      @short_link = @short_link.find_existing
+      @short_link = short_link.find_existing
     end
-    respond_with @short_link.find_existing
+    respond_with @short_link
   end
 
 

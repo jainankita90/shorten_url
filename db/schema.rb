@@ -12,10 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2018_07_21_153432) do
 
-  create_table "short_links", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "short_links", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "main_url"
     t.string "sanitize_url"
-    t.string "hit_count", default: "0"
+    t.integer "hit_count", default: 0
     t.string "slug"
     t.date "expire_date"
     t.datetime "created_at", null: false
