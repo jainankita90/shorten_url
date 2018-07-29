@@ -37,7 +37,7 @@ class ShortLinksController < ApplicationController
   def create
     short_link = ShortLink.new(short_link_params)
     if short_link.new_url?
-      errors= short_link.save
+      short_link.save
       @short_link = short_link
     else
       @short_link = short_link.find_existing
@@ -66,7 +66,9 @@ class ShortLinksController < ApplicationController
 
 
   def increase_hit_count
-    @short_link.hit_count += 1
-    @short_link.save
+    if @short_link.present?
+      @short_link.hit_count += 1
+      @short_link.save
+    end
   end
 end
