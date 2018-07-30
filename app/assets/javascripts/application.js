@@ -20,7 +20,7 @@ $('#new_short_link').ready(function() {
     rules: {
       'short_link[main_url]': {
         required: true,
-        url_regex: "^(http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+        url_regex: /^(http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
       },
     },
     messages: {
